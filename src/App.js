@@ -1,16 +1,24 @@
 import React from 'react';
-import './App.css';
-import Panel from './Panel';
+import NavBar from './NavBar';
+import { Grid } from '@material-ui/core';
+import Camera from './Camera';
+import SceneView from './SceneView';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Panel />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-      </header>
+    <div>
+      <NavBar></NavBar>
+      <Grid container style={{padding: 24}}>
+        <Grid item xs={12} sm={6} lg={6} xl={6}>
+          <Camera node="0"/>
+          <Camera node="1"/>
+          <Camera node="2"/>
+          <Camera node="3"/>
+        </Grid>
+        <Grid item xs={12} sm={6} lg={6} xl={6}>
+          <SceneView/>
+        </Grid>
+      </Grid>
     </div>
   );
 }
