@@ -14,9 +14,9 @@ class Camera extends React.Component {
   doOnOff = () => {
     if (this.state.bIsOn) {
       //Turn off
-      this.setState({ bIsOn: false });
+      this.doActionStatus('disconnect');
     } else {
-      this.setState({ bIsOn: true });
+      this.doActionStatus('connect');
     }
   }
 
@@ -49,8 +49,8 @@ class Camera extends React.Component {
               <Grid item xs={6}>
                 <Switch size="medium" color="secondary" onClick={this.doOnOff} checked={this.state.bIsOn} />
                 <Typography style={{ display: 'inline-block' }}>{this.state.bIsOn ? "ON" : "OFF"}</Typography>
-                <Button variant="contained" color="primary" disabled={true}>Save Relocalization Map</Button>
-                <Button variant="contained" color="primary">Load Relocalization Map</Button>
+                <Button variant="contained" color="primary" onClick={() => {this.doActionStatus('save_states')}} disabled={!this.state.bIsOn && !this.state.bIsStreaming}>Save Relocalization Map</Button>
+                <Button variant="contained" color="primary" onClick={() => {this.doActionStatus('load_states')}} disabled={!this.state.bIsOn && !this.state.bIsStreaming}>Load Relocalization Map</Button>
                 <div>{ "local position: " + this.state.x + ", " + this.state.y + ", " + this.state.z }</div>
                 <div>{ "global position: " }</div>
               </Grid>
